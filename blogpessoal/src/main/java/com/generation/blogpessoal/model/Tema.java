@@ -13,18 +13,25 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
+@Entity//transforma o objeto em uma entidade = tabela dentro do banco de dados
 @Table(name = "tb_temas")
 public class Tema {
 	
-	@Id
+	@Id//tranforma o id em chave primaria
+	
+	//gene - 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull(message = "O Atributo Descrição é obrigatório")
 	private String descricao;
 
-	@OneToMany(mappedBy = "tema", cascade = CascadeType.REMOVE)
+	
+	//relacionamento entre tabelas - 1 tema para varias postagens 
+	@OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)
+	
+	//RECURSIVIDADE = A api não tem um limite de requisicoes= looping infinito, 
+	//para evitar isso temos @ignoreproperties para travar a aplicacao e evitar o looping infinito
 	@JsonIgnoreProperties("tema")
 	private List<Postagem> postagem;
 	
@@ -38,7 +45,7 @@ public class Tema {
 	}
 
 	public String getDescricao() {
-		return this.descricao;
+		return descricao;
 	}
 
 	public void setDescricao(String descricao) {
