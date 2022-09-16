@@ -30,8 +30,11 @@ public class Usuario {
 	@NotNull(message = "O Atributo Nome é Obrigatório!")
 	private String nome;
 	
+	
+	@Schema(example = "email@email.com.br")
 	@NotNull(message = "O Atributo Usuário é Obrigatório!")
 	@Email(message = "O Atributo Usuário deve ser um email válido!")
+	private String usuario;
 	
 	
 	@NotBlank(message = "O Atributo Senha é Obrigatório!")
@@ -57,10 +60,7 @@ public class Usuario {
 	
 	public Usuario() { }
 	
-	@Schema(example = "email@email.com.br")
-	@NotNull(message = "O Atributo Usuário é Obrigatório!")
-	@Email(message = "O Atributo Usuário deve ser um email válido!")
-	private String usuario;
+	
 	
 	/* Insira os Getters and Setters */
 	public Long getId() {
